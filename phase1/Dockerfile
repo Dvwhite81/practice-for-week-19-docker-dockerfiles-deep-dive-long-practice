@@ -11,5 +11,7 @@ WORKDIR /usr/share/nginx/html
 COPY index.html /usr/share/nginx/html
 
 # BONUS: add in a healthcheck!
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+CMD curl -f http://localhost/8080 || exit 1
 
 # No need to specify EXPOSE or CMD because they're include in the base (FROM)
